@@ -50,6 +50,7 @@
       --chart-3: 30 80% 55%;
       --chart-4: 280 65% 60%;
       --chart-5: 340 75% 55%;
+      --accent: 224 60% 80%;
     }
   }
 
@@ -60,4 +61,20 @@
     body {
       @apply bg-background text-foreground;
     }
+
+    a {
+      @apply hover:text-accent hover:border-accent border-b-[1px] border-transparent px-[3px]
+    }
+
+    .selected {
+      @apply text-primary hover:border-transparent hover:text-primary cursor-default
+    }
+
+    .profile-selected {
+      @apply border-primary border-[2px]
+    }
+  }
+
+  a {
+    transition: all 0.4s ease-in-out;
   }
