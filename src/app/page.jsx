@@ -58,7 +58,7 @@ export default function LandingPage() {
           <h1 className="text-6xl font-[800]">
             Welcome to
             <span className="text-primary">
-              {' Omallia! '}
+              {' Omillia! '}
             </span><br />
             Connect with your loved ones!
           </h1>
