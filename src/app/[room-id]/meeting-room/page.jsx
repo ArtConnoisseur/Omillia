@@ -6,13 +6,16 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 
 export default function MeetingRoom() {
+    const [meetingTitle, setMeetingTitle] = useState("[Internal] Weekly Report Marketing + Sales")
+    const [meetingID, setMeetingID] = useState("abc-def-ghi");
+
     const [currentTime, setCurrentTime] = useState("");
     const [microphoneEnabled, setMicrophoneEnabled] = useState(false);
     const [videoEnabled, setVideoEnabled] = useState(false);
     const [screenShared, setScreenShared] = useState(false);
     const [checkmark, showCheckMark] = useState();
     const [modaltext, setModalText] = useState("");
-    const [meetingID, setMeetingID] = useState("abc-def-ghi");
+
 
     function getCurrentTime() {
         //gpt
@@ -33,13 +36,13 @@ export default function MeetingRoom() {
     return (
         <section>
             <div className="bg-blue-100 text-black box-border h-[100vh] w-[100vw]">
-                <div className="h-[7vh] flex flex-row">
+                <div className="h-[10vh] flex flex-row">
                     <div className="h-[100%] w-[100px] text-black flex items-center justify-center">
                         Logo
                     </div>
                     <div className="text-2xl h-[100%] w-[40vw]  flex flex-col items-start  justify-center">
-                        <div className="text-[1.3em] text-black font-bold">
-                            [Internal] Weekly Report Marketing + Sales
+                        <div className=" text-black font-bold">
+                            {meetingTitle}
                         </div>
                         <div className="text-[0.8em] text-slate-800 flex flex-row ">
                             <div className="pr-[5px]">July 20th, 2024</div>|
@@ -50,7 +53,7 @@ export default function MeetingRoom() {
                         people thingy
                     </div>
                     <div
-                        className="h-[70%] min-w-[11vw] max-w-[15vw] flex flex-row items-center justify-center bg-secondary rounded-[50px] mt-[13.5px] ml-[10px] text-2xl cursor-pointer"
+                        className="h-[70%] min-w-[13vw] max-w-[15vw] flex flex-row items-center justify-center bg-secondary rounded-[50px] mt-[13.5px] ml-[10px] text-xl cursor-pointer"
                         onClick={() => handleCopyMeetingID()}
                     >
                         
@@ -123,11 +126,11 @@ export default function MeetingRoom() {
                                         }}
                                     >
                                         {microphoneEnabled ? (
-                                            <div className="h-[70px] w-[70px] rounded-full bg-black relative flex justify-center items-center text-3xl cursor-pointer">
+                                            <div className="h-[60px] w-[60px] rounded-full bg-black relative flex justify-center items-center text-3xl cursor-pointer">
                                                 <i className="fa-solid fa-microphone text-[white]"></i>
                                             </div>
                                         ) : (
-                                            <div className="h-[70px] w-[70px] rounded-full bg-red-600 relative flex justify-center items-center text-3xl cursor-pointer">
+                                            <div className="h-[60px] w-[60px] rounded-full bg-red-600 relative flex justify-center items-center text-3xl cursor-pointer">
                                                 <i className="fa-solid fa-microphone-slash text-[black]"></i>
                                             </div>
                                         )}
@@ -140,11 +143,11 @@ export default function MeetingRoom() {
                                         }}
                                     >
                                         {videoEnabled ? (
-                                            <div className="h-[70px] w-[70px] rounded-full bg-black relative flex justify-center items-center text-3xl cursor-pointer">
+                                            <div className="h-[60px] w-[60px] rounded-full bg-black relative flex justify-center items-center text-3xl cursor-pointer">
                                                 <i className="fa-solid fa-video text-[white]"></i>
                                             </div>
                                         ) : (
-                                            <div className="h-[70px] w-[70px] rounded-full bg-red-600 relative flex justify-center items-center text-3xl cursor-pointer">
+                                            <div className="h-[60px] w-[60px] rounded-full bg-red-600 relative flex justify-center items-center text-3xl cursor-pointer">
                                                 <i className="fa-solid fa-video-slash text-[black]"></i>
                                             </div>
                                         )}
@@ -156,7 +159,7 @@ export default function MeetingRoom() {
                                         setScreenShared(!screenShared);
                                     }}
                                 >
-                                    <div className="h-[70px] w-[70px] rounded-full bg-black relative flex justify-center items-center text-3xl cursor-pointer">
+                                    <div className="h-[60px] w-[60px] rounded-full bg-black relative flex justify-center items-center text-3xl cursor-pointer">
                                         {screenShared ? (
                                             <i className="fa-solid fa-arrow-up-from-bracket text-primary"></i>
                                         ) : (
@@ -171,119 +174,27 @@ export default function MeetingRoom() {
                         <div className=" h-[100%]  border-2 border-slate-400 rounded-[8px]">
                             <div className=" text-3xl">Participants</div>
                             <div className="mx-[5px]">
-                                <div className="h-[7vh] mx-[10px] my-[20px] flex flex-row items-center relative justify-between bg-slate-400 rounded-[70px] ">
+                                <div className="h-[7vh] mx-[10px] my-[20px] flex flex-row items-center relative bg-slate-400 rounded-[70px] ">
                                     <img
-                                        className="h-[70px] w-[70px] ml-[5px]"
+                                        className="h-[50px] w-[50px] ml-[5px]"
                                         src="https://avatar.iran.liara.run/public"
                                     />
                                     <span className="px-[10px]">Name</span>
-                                    <div className="my-[10px]">
-                                        <span className="mx-[5px]">
+                                    <div className="m-[10px] p-[10px] absolute right-3">
+                                        <div className="float-left flex justify-center items-center w-[2vw]">
                                             {microphoneEnabled ? (
                                                 <i className="fa-solid fa-microphone mx-[5px]"></i>
                                             ) : (
-                                                <i className="fa-solid fa-microphone-slash mx-[5px]"></i>
+                                                <i className="fa-solid fa-microphone-slash mx-[5px] text-red-700"></i>
                                             )}
-                                        </span>
-                                        <span className="mr-[20px]">
+                                        </div>
+                                        <div className="float-left flex justify-center items-center w-[2vw]">
                                             {videoEnabled ? (
-                                                <i className="fa-solid fa-video"></i>
+                                                <i className="fa-solid fa-video mx-[5px]"></i>
                                             ) : (
-                                                <i className="fa-solid fa-video-slash"></i>
+                                                <i className="fa-solid fa-video-slash mx-[5px] text-red-700"></i>
                                             )}
-                                        </span>
-                                    </div>
-                                </div>
-                                <div className="h-[7vh] mx-[10px] my-[20px] flex flex-row items-center relative justify-between bg-slate-400 rounded-[70px] ">
-                                    <img
-                                        className="h-[70px] w-[70px] ml-[5px]"
-                                        src="https://avatar.iran.liara.run/public"
-                                    />
-                                    <span className="px-[10px]">Name</span>
-                                    <div className="my-[10px]">
-                                        <span className="mx-[5px]">
-                                            {microphoneEnabled ? (
-                                                <i className="fa-solid fa-microphone mx-[5px]"></i>
-                                            ) : (
-                                                <i className="fa-solid fa-microphone-slash mx-[5px]"></i>
-                                            )}
-                                        </span>
-                                        <span className="mr-[20px]">
-                                            {videoEnabled ? (
-                                                <i className="fa-solid fa-video"></i>
-                                            ) : (
-                                                <i className="fa-solid fa-video-slash"></i>
-                                            )}
-                                        </span>
-                                    </div>
-                                </div>
-                                <div className="h-[7vh] mx-[10px] my-[20px] flex flex-row items-center relative justify-between bg-slate-400 rounded-[70px] ">
-                                    <img
-                                        className="h-[70px] w-[70px] ml-[5px]"
-                                        src="https://avatar.iran.liara.run/public"
-                                    />
-                                    <span className="px-[10px]">Name</span>
-                                    <div className="my-[10px]">
-                                        <span className="mx-[5px]">
-                                            {microphoneEnabled ? (
-                                                <i className="fa-solid fa-microphone mx-[5px]"></i>
-                                            ) : (
-                                                <i className="fa-solid fa-microphone-slash mx-[5px]"></i>
-                                            )}
-                                        </span>
-                                        <span className="mr-[20px]">
-                                            {videoEnabled ? (
-                                                <i className="fa-solid fa-video"></i>
-                                            ) : (
-                                                <i className="fa-solid fa-video-slash"></i>
-                                            )}
-                                        </span>
-                                    </div>
-                                </div>
-                                <div className="h-[7vh] mx-[10px] my-[20px] flex flex-row items-center relative justify-between bg-slate-400 rounded-[70px] ">
-                                    <img
-                                        className="h-[70px] w-[70px] ml-[5px]"
-                                        src="https://avatar.iran.liara.run/public"
-                                    />
-                                    <span className="px-[10px]">Name</span>
-                                    <div className="my-[10px]">
-                                        <span className="mx-[5px]">
-                                            {microphoneEnabled ? (
-                                                <i className="fa-solid fa-microphone mx-[5px]"></i>
-                                            ) : (
-                                                <i className="fa-solid fa-microphone-slash mx-[5px]"></i>
-                                            )}
-                                        </span>
-                                        <span className="mr-[20px]">
-                                            {videoEnabled ? (
-                                                <i className="fa-solid fa-video"></i>
-                                            ) : (
-                                                <i className="fa-solid fa-video-slash"></i>
-                                            )}
-                                        </span>
-                                    </div>
-                                </div>
-                                <div className="h-[7vh] mx-[10px] my-[20px] flex flex-row items-center relative justify-between bg-slate-400 rounded-[70px] ">
-                                    <img
-                                        className="h-[70px] w-[70px] ml-[5px]"
-                                        src="https://avatar.iran.liara.run/public"
-                                    />
-                                    <span className="px-[10px]">Name</span>
-                                    <div className="my-[10px]">
-                                        <span className="mx-[5px]">
-                                            {microphoneEnabled ? (
-                                                <i className="fa-solid fa-microphone mx-[5px]"></i>
-                                            ) : (
-                                                <i className="fa-solid fa-microphone-slash mx-[5px]"></i>
-                                            )}
-                                        </span>
-                                        <span className="mr-[20px]">
-                                            {videoEnabled ? (
-                                                <i className="fa-solid fa-video"></i>
-                                            ) : (
-                                                <i className="fa-solid fa-video-slash"></i>
-                                            )}
-                                        </span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
