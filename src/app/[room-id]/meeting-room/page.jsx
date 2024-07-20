@@ -3,6 +3,7 @@
 import { BsRecordCircleFill } from "react-icons/bs";
 import { Separator } from "@/components/ui/separator";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 export default function MeetingRoom() {
     const [currentTime, setCurrentTime] = useState("");
