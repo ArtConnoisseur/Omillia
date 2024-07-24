@@ -1,80 +1,103 @@
 @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
+@tailwind components;
+@tailwind utilities;
 
-  @layer base {
+@layer base {
     :root {
-      --background: 0 0% 100%;
-      --foreground: 0 6% 20%;
-      --card: 0 0% 100%;
-      --card-foreground: 222.2 84% 4.9%;
-      --popover: 0 0% 100%;
-      --popover-foreground: 222.2 84% 4.9%;
-      --primary: 217 100% 50%;
-      --primary-foreground: 210 40% 98%;
-      --secondary: 0, 79%, 63%;
-      --secondary-foreground: 222.2 47.4% 11.2%;
-      --muted: 210 40% 96.1%;
-      --muted-foreground: 215.4 16.3% 46.9%;
-      --accent: 224 56% 73%;
-      --accent-foreground: 210 40% 98%;
-      --destructive: 0 84.2% 60.2%;
-      --destructive-foreground: 210 40% 98%;
-      --border: 214.3 31.8% 91.4%;
-      --input: 214.3 31.8% 91.4%;
-      --ring: 222.2 84% 4.9%;
-      --radius: 0.5rem;
-      --chart-1: 12 76% 61%;
-      --chart-2: 173 58% 39%;
-      --chart-3: 197 37% 24%;
-      --chart-4: 43 74% 66%;
-      --chart-5: 27 87% 67%;
+        --background: 0 0% 100%;
+        --foreground: 0 6% 20%;
+        --card: 0 0% 100%;
+        --card-foreground: 222.2 84% 4.9%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 222.2 84% 4.9%;
+        --primary: 217 100% 50%;
+        --primary-foreground: 210 40% 98%;
+        --secondary: 0, 79%, 63%;
+        --secondary-foreground: 222.2 47.4% 11.2%;
+        --muted: 210 40% 96.1%;
+        --muted-foreground: 215.4 16.3% 46.9%;
+        --accent: 224 56% 73%;
+        --accent-foreground: 210 40% 98%;
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 210 40% 98%;
+        --border: 214.3 31.8% 91.4%;
+        --input: 214.3 31.8% 91.4%;
+        --ring: 222.2 84% 4.9%;
+        --radius: 0.5rem;
+        --chart-1: 12 76% 61%;
+        --chart-2: 173 58% 39%;
+        --chart-3: 197 37% 24%;
+        --chart-4: 43 74% 66%;
+        --chart-5: 27 87% 67%;
+
+        --primary-light: #0060ff;
+        --secondary-light: #eb5757;
+        --background-primary-light: #ffffff;
+        --background-secondary-light: #f6f6f6;
+        --background-tertiary-light: #f1f0f0;
+        --text-light: #313237;
+        --text-secondary-light: #acacac;
+        --button-background-light: #dfebff;
+
+        --primary-dark: #1a71ff;
+        --secondary-dark: #ff4949;
+        --background-primary-dark: #161929;
+        --background-secondary-dark: #242737;
+        --background-teriary-dark: #1c1f2e;
+        --text-dark: #e2e2e2;
+        --text-secondary-dark: #9f9f9f;
+        --button-background-dark: #1e2757;
     }
 
-    :root[data-theme='dark'] {
-      --background: 222.2 84% 4.9%;
-      --foreground: 210 40% 98%;
-      --card: 222.2 84% 4.9%;
-      --card-foreground: 210 40% 98%;
-      --popover: 222.2 84% 4.9%;
-      --popover-foreground: 210 40% 98%;
-      --muted: 217.2 32.6% 17.5%;
-      --muted-foreground: 215 20.2% 65.1%;
-      --destructive: 0 62.8% 30.6%;
-      --destructive-foreground: 210 40% 98%;
-      --border: 217.2 32.6% 17.5%;
-      --input: 217.2 32.6% 17.5%;
-      --ring: 212.7 26.8% 83.9%;
-      --chart-1: 220 70% 50%;
-      --chart-2: 160 60% 45%;
-      --chart-3: 30 80% 55%;
-      --chart-4: 280 65% 60%;
-      --chart-5: 340 75% 55%;
-      --accent: 224 60% 80%;
+    :root[data-theme="dark"] {
+        --background: 222.2 84% 4.9%;
+        --foreground: 210 40% 98%;
+        --card: 222.2 84% 4.9%;
+        --card-foreground: 210 40% 98%;
+        --popover: 222.2 84% 4.9%;
+        --popover-foreground: 210 40% 98%;
+        --muted: 217.2 32.6% 17.5%;
+        --muted-foreground: 215 20.2% 65.1%;
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 210 40% 98%;
+        --border: 217.2 32.6% 17.5%;
+        --input: 217.2 32.6% 17.5%;
+        --ring: 212.7 26.8% 83.9%;
+        --chart-1: 220 70% 50%;
+        --chart-2: 160 60% 45%;
+        --chart-3: 30 80% 55%;
+        --chart-4: 280 65% 60%;
+        --chart-5: 340 75% 55%;
+        --accent: 224 60% 80%;
     }
-  }
+}
 
-  @layer base {
+@layer base {
     * {
-      @apply border-border;
+        @apply border-border;
     }
     body {
-      @apply bg-background text-foreground;
+        @apply bg-background text-foreground;
     }
 
     a {
-      @apply hover:text-accent hover:border-accent border-b-[1px] border-transparent px-[3px]
+        @apply hover:text-accent hover:border-accent border-b-[1px] border-transparent px-[3px];
     }
 
     .selected {
-      @apply text-primary hover:border-transparent hover:text-primary cursor-default
+        @apply text-primary hover:border-transparent hover:text-primary cursor-default;
     }
 
     .profile-selected {
-      @apply border-primary border-[2px]
+        @apply border-primary border-[2px];
     }
-  }
+}
 
-  a {
+a {
     transition: all 0.4s ease-in-out;
-  }
+}
+
+.chat-mode-active {
+    background-color: var(--primary-light);
+    color: var(--text-secondary-dark);
+}
