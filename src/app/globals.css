@@ -101,3 +101,10 @@ a {
     background-color: var(--primary-light);
     color: var(--text-secondary-dark);
 }
+
+:root {
+    --switch-checked-bg-color: #3b82f6; /* Blue */
+    --switch-unchecked-bg-color: #e5e7eb; /* Gray */
+    --switch-thumb-bg-color: #ffffff; /* White */
+    --ring-color: #3b82f6; /* Blue */
+  }

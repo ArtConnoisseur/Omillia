@@ -4,16 +4,17 @@ import { BsRecordCircleFill } from "react-icons/bs";
 import { Separator } from "@/components/ui/separator";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-
+import { Switch } from "@/components/ui/switch";
 import chatMessages from "./chatMessages";
 import chatMembers from "./ChatMembers";
+import "./switch.css";
 
 export default function MeetingRoom() {
     const [meetingTitle, setMeetingTitle] = useState(
         "[Internal] Weekly Report Marketing + Sales"
     );
     const [meetingID, setMeetingID] = useState("abc-def-ghi");
-
+    const [lightMode, setLightMode] = useState(true);
     const [currentTime, setCurrentTime] = useState("");
     const [microphoneEnabled, setMicrophoneEnabled] = useState(false);
     const [videoEnabled, setVideoEnabled] = useState(false);
@@ -25,6 +26,8 @@ export default function MeetingRoom() {
     const [chatMessage, setChatMessage] = useState(
         "Today, we are here to discuss last week's sales."
     );
+
+    const [themeLight, setThemeLight] = useState(true);
 
     function getCurrentTime() {
         //gpt
@@ -88,7 +91,14 @@ export default function MeetingRoom() {
                             )}
                         </div>
                     </div>
-                    <div></div>
+                    <Switch />
+                    <button
+                        onClick={() => {
+                            setLightMode(!lightMode);
+                        }}
+                    >
+                        {lightMode ? "Dark Mode" : "Light Mode"}
+                    </button>
                 </div>
                 {/* END TOPBAR */}
                 {/* START MAIN SECTION */}
@@ -128,22 +138,24 @@ export default function MeetingRoom() {
                                 <div className="h-[100%] w-[4vw] float-left right-1 flex items-center justify-center border-[1px] rounded-[8px] bg-slate-300 text-2xl">
                                     <i class="fa-solid fa-chevron-right"></i>
                                 </div> */}
-                                <div>
+                                <div className="flex flex-row ">
                                     {/* <div className="h-[100%] w-[4vw] float-left left-1 flex items-center justify-center border-[1px] rounded-[8px] bg-slate-300 text-2xl">
-        <i className="fa-solid fa-chevron-left"></i>
-      </div> */}
-                                    <div className="flex flex-row overflow-x-auto w-[70vw] space-x-2">
+                                        <i className="fa-solid fa-chevron-left"></i>
+                                    </div> */}
+                                    <div className="flex flex-row overflow-x-auto w-[70vw] space-x-2 h-[19vh]">
                                         {chatMembers.map((member, index) => (
                                             <div
                                                 key={index}
-                                                className="w-[25vw] h-[17vh] bg-slate-400 rounded-[8px] relative"
+                                                className="w-[25vw] h-[17vh] bg-slate-400 rounded-[8px] relative flex-nowrap"
                                             >
                                                 {member.videoEnabled ? (
-                                                    <div>video enabled</div>
+                                                    <div className="h-[17vh] w-[25vh]">
+                                                        video enabled
+                                                    </div>
                                                 ) : (
-                                                    <div className="absolute top-[50%] left-[50%]">
+                                                    <div className="h-[17vh] w-[25vh]">
                                                         <img
-                                                            className="h-[30px] w-[30px] rounded-full"
+                                                            className="h-[30px] w-[30px] rounded-full absolute top-[40%] left-[40%]"
                                                             src={
                                                                 member.imageSrc
                                                             }
@@ -162,8 +174,8 @@ export default function MeetingRoom() {
                                         ))}
                                     </div>
                                     {/* <div className="h-[100%] w-[4vw] float-left right-1 flex items-center justify-center border-[1px] rounded-[8px] bg-slate-300 text-2xl">
-        <i class="fa-solid fa-chevron-right"></i>
-      </div> */}
+                                        <i class="fa-solid fa-chevron-right"></i>
+                                    </div> */}
                                 </div>
                             </div>
                         </div>
