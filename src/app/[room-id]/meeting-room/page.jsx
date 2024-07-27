@@ -16,6 +16,7 @@ export default function MeetingRoom() {
     const [meetingID, setMeetingID] = useState("abc-def-ghi");
     const [lightMode, setLightMode] = useState(true);
     const [currentTime, setCurrentTime] = useState("");
+    const [recordingEnabled, setRecordingEnabled] = useState(false);
     const [microphoneEnabled, setMicrophoneEnabled] = useState(false);
     const [videoEnabled, setVideoEnabled] = useState(false);
     const [screenShared, setScreenShared] = useState(false);
@@ -49,7 +50,9 @@ export default function MeetingRoom() {
         <section>
             <div className="bg-background-primary-light text-primary-light box-border h-[100vh] w-[100vw]">
                 <div className="h-[10vh] flex flex-row">
-                    <div className="h-[100%] w-[100px] text-black flex items-center justify-center border-r-[2px] border-background-secondary-light"></div>
+                    <div className="h-[100%] w-[100px] text-black flex items-center justify-center border-r-[2px] border-background-secondary-light">
+                        <i class="fa-regular fa-face-smile text-6xl"></i>
+                    </div>
                     <div className="text-xl h-[100%] w-[40vw] pl-[20px]  flex flex-col items-start  justify-center">
                         <div className=" text-text-light ">{meetingTitle}</div>
                         <div className="text-[0.7em] text-text-secondary-light flex flex-row ">
@@ -106,15 +109,28 @@ export default function MeetingRoom() {
                     <div className=" w-[70vw] h-[79vh] sm:w-[100%] ">
                         <div className=" h-[75%] px-[10px] pt-[10px] bg-background-tertiary-light">
                             <div className=" border-2 border-slate-400 rounded-[10px] h-[100%] relative">
-                                pinned video / currently speaking
-                                <div className=" max-w-[8vw] min-w-[7vw] bg-gray-500 h-[4vh] flex flex-row items-center justify-center rounded-[50px] absolute top-3 left-3">
-                                    <BsRecordCircleFill className="text-text-secondary-light bg-red-600 text-[1.2em] left-2 absolute rounded-[100%]" />
-                                    <div className="pl-7 text-text-dark">
-                                        {recordTime}
+                                {recordingEnabled && (
+                                    <div className=" max-w-[8vw] min-w-[7vw] bg-gray-500 h-[4vh] flex flex-row items-center justify-center rounded-[50px] absolute top-3 left-3">
+                                        <BsRecordCircleFill className="text-text-secondary-light bg-red-600 text-[1.2em] left-2 absolute rounded-[100%]" />
+                                        <div className="pl-7 text-text-dark">
+                                            {recordTime}
+                                        </div>
                                     </div>
+                                )}
+
+                                <div className="max-w-[8vw] min-w-[3vw] bg-gray-500 h-[4vh] rounded-[50px] px-[20px] absolute bottom-3 left-3 flex items-center justify-center text-text-dark">
+                                    Maverick
                                 </div>
-                                <div className=" max-w-[8vw] min-w-[3vw] bg-gray-500 h-[4vh] rounded-[50px] px-[20px] absolute bottom-3 left-3 flex items-center justify-center text-text-dark">
-                                    Name
+                                <div className="absolute right-[1%] bottom-[2%]">
+                                    {microphoneEnabled ? (
+                                        <div className="h-[60px] w-[60px] rounded-full bg-black bg-opacity-50 relative flex justify-center items-center text-2xl ">
+                                            <i className="fa-solid fa-microphone text-[white]"></i>
+                                        </div>
+                                    ) : (
+                                        <div className="h-[60px] w-[60px] rounded-full bg-red-600 bg-opacity-50 relative flex justify-center items-center text-2xl">
+                                            <i className="fa-solid fa-microphone-slash text-[black]"></i>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -146,16 +162,16 @@ export default function MeetingRoom() {
                                         {chatMembers.map((member, index) => (
                                             <div
                                                 key={index}
-                                                className="w-[25vw] h-[17vh] bg-slate-400 rounded-[8px] relative flex-nowrap"
+                                                className="w-[25vw] h-[17vh] bg-slate-400 rounded-[8px] relative flex-nowrap "
                                             >
                                                 {member.videoEnabled ? (
                                                     <div className="h-[17vh] w-[25vh]">
                                                         video enabled
                                                     </div>
                                                 ) : (
-                                                    <div className="h-[17vh] w-[25vh]">
+                                                    <div className="h-[17vh] w-[25vh] flex items-center justify-center ">
                                                         <img
-                                                            className="h-[30px] w-[30px] rounded-full absolute top-[40%] left-[40%]"
+                                                            className="h-[60px] w-[60px] rounded-full "
                                                             src={
                                                                 member.imageSrc
                                                             }
@@ -163,11 +179,14 @@ export default function MeetingRoom() {
                                                         ></img>
                                                     </div>
                                                 )}
+                                                <div className="absolute left-[5%] bottom-[5%] bg-slate-600 bg-opacity-50 text-[0.7rem] text-text-dark p-[5px] px-[7px] rounded-full">
+                                                    {member.name}
+                                                </div>
                                                 <div className="absolute right-[5%] bottom-[10%] text-[1.2rem] w-[2vw] flex items-center justify-center">
                                                     {member.microphoneEnabled ? (
                                                         <i className="fa-solid fa-microphone"></i>
                                                     ) : (
-                                                        <i className="fa-solid fa-microphone-slash"></i>
+                                                        <i className="fa-solid fa-microphone-slash text-red-600"></i>
                                                     )}
                                                 </div>
                                             </div>
@@ -221,6 +240,19 @@ export default function MeetingRoom() {
                                     </div>
                                 </div>
                                 <div
+                                    onClick={() => {
+                                        setRecordingEnabled(!recordingEnabled);
+                                    }}
+                                >
+                                    <div className="h-[60px] w-[60px] rounded-full bg-black relative flex justify-center items-center text-2xl cursor-pointer">
+                                        {recordingEnabled ? (
+                                            <i class="fa-solid fa-record-vinyl text-red-500"></i>
+                                        ) : (
+                                            <i class="fa-solid fa-record-vinyl text-[white]"></i>
+                                        )}
+                                    </div>
+                                </div>
+                                <div
                                     className=""
                                     onClick={() => {
                                         setScreenShared(!screenShared);
@@ -233,6 +265,14 @@ export default function MeetingRoom() {
                                             <i className="fa-solid fa-arrow-up-from-bracket text-[white]"></i>
                                         )}
                                     </div>
+                                </div>
+                            </div>
+                            <div className=" absolute right-[0%]">
+                                <div className="h-[11vh] w-[10vw]  flex items-center justify-center">
+                                    <button className="h-[5vh] w-[8vw] bg-red-500 flex items-center justify-center text-text-light p-[5px] rounded-full">
+                                        <i class="fa-solid fa-question"></i>
+                                        End Call
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -416,8 +456,8 @@ export default function MeetingRoom() {
                                             className="bg-background-secondary-light text-[0.8rem] w-[65%] ml-3"
                                             placeholder="Type Something..."
                                         ></input>
-                                        <button className="w-[50px] h-[50px] rounded-full">
-                                            <i className="fa-solid fa-paper-plane text-primary-light text-[1.5rem] "></i>
+                                        <button className="w-[50px] h-[50px] rounded-full bg-primary-light flex items-center justify-center">
+                                            <i className="fa-solid fa-paper-plane text-white text-[1.5rem] "></i>
                                         </button>
                                     </div>
                                 </div>
